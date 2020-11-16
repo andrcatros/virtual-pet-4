@@ -1,5 +1,3 @@
-function pet (name) {
-    this.name = "Fido"
-}
+function Pet() {}
 
-module.exports = pet;
+module.exports = Pet;
