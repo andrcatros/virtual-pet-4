@@ -70,4 +70,29 @@ describe("constructor", () => {
             expect(pet.hunger).toEqual(0);
         })
     });
+
+    describe("checkUp", () => {
+        it("if fitness is 3 or less, return i need a walk", () => {
+            pet.fitness = 1;
+
+            expect(pet.checkUp()).toBe("I need a walk");
+        })
+        it("if hunger is above 5, return i am hungry", () => {
+            pet.hunger = 10;
+
+            expect(pet.checkUp()).toBe("I am hungry");
+        })
+        it("if pet is hungry and unfit, return i am hungry and need a walk", () => {
+            pet.fitness = 2;
+            pet.hunger = 10;
+
+            expect(pet.checkUp()).toBe("I am hungry AND I need a walk");
+        })
+        it("if neither are true, return i feel great", () => {
+            pet.fitness = 5;
+            pet.hunger = 3;
+
+            expect(pet.checkUp()).toBe("I feel great!");
+        })
+    })
 });

@@ -2,6 +2,10 @@ const MAX_FITNESS = 10;
 const MIN_FITNESS = 0;
 const MIN_AGE = 0;
 const MIN_HUNGER = 0;
+const hungryString = "I am hungry";
+const unfitString = "I need a walk";
+const neglectedString = "I am hungry AND I need a walk";
+const happyString = "I feel great!";
 
 function Pet(config) {
     this.name = config.name;
@@ -31,6 +35,17 @@ Pet.prototype = {
             this.hunger -= 3;
         } else {
             this.hunger = MIN_HUNGER;
+        }
+    },
+    checkUp: function () {
+        if(((this.fitness <=3) && (this.hunger >= 5))) {
+            return neglectedString;
+        } else if(this.hunger >= 5) {
+            return hungryString;
+        } else if(this.fitness <= 3) {
+            return unfitString;
+        } else {
+            return happyString;
         }
     },
 }
