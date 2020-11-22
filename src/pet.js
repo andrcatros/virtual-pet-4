@@ -17,12 +17,20 @@ Pet.prototype = {
     this.fitness -= 3;
     if (this.fitness < MIN_FITNESS) {
         this.fitness = MIN_FITNESS;
-    }},
+        }
+    },
     walk: function () {
-        if((this.fitness + 4) <= 10 ) {
+        if((this.fitness + 4) <= MAX_FITNESS ) {
             this.fitness += 4;
         } else {
             this.fitness = MAX_FITNESS;
+        }
+    },
+    feed: function () {
+        if((this.hunger - 3) >= MIN_HUNGER ) {
+            this.hunger -= 3;
+        } else {
+            this.hunger = MIN_HUNGER;
         }
     },
 }

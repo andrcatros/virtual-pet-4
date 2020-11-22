@@ -55,4 +55,19 @@ describe("constructor", () => {
             expect(pet.fitness).toEqual(10);
         });
     });
+
+    describe("feed", () => {
+        it("decreases hunger by 3", () => {
+            pet.hunger = 15;
+            pet.feed();
+
+            expect(pet.hunger).toEqual(12);
+        });
+        it("decreases hunger to a minimum value of 0", () => {
+            pet.hunger = 1;
+            pet.feed();
+
+            expect(pet.hunger).toEqual(0);
+        })
+    });
 });
