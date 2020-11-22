@@ -1,30 +1,58 @@
 const Pet = require("../src/pet");
 
 describe("constructor", () => {
-    it("returns an object", () => {
-        expect(new Pet("Fido")).toBeInstanceOf(Object);
+    let pet;
+    let config;
+    beforeEach(() => {
+        config = {
+            name: "Fido",
+            age: 0,
+            hunger: 0,
+            fitness: 10,
+        };
+        pet = new Pet(config);
     });
 
-    it("has an initial age of 0", () => {
-        const pet = new Pet("Fido");
+    describe("constructor function", () => {
+        it("returns an object", () => {
+            expect(new Pet("Fido")).toBeInstanceOf(Object);
+        });
 
-        expect(pet.age).toEqual(0);
+        it("has an initial age of 0", () => {
+            expect(pet.age).toEqual(config.age);
+        });
+        
+        it("returns name of pet", () => {
+            expect(pet.name).toBe(config.name);
+        });
     });
-});
 
-describe("growUp", () => {
-    it("increments the age by 1", () => {
-        const pet = new Pet("Fido");
-
-        pet.growUp();
-
-        expect(pet.age).toEqual(1);
+    describe("growUp", () => {
+        it("increments the age by 1", () => {
+            pet.growUp();
+            expect(pet.age).toEqual(1);
+        });
+        it("increases hunger by 5", () => {
+            pet.growUp();
+            expect(pet.hunger).toBe(5);
+        });
+        it("decreases fitness by 3", () => {
+            pet.growUp();
+            expect(pet.fitness).toBe(7);
+        });
     });
-});
 
-describe("pet exists", () => {
-    it("sets name of pet", () => {
-        const pet = new Pet("Fido");
-        expect(pet.name).toEqual("Fido");
+    describe("walk", () => {
+        it("increases fitness by 4", () => {
+            pet.fitness = 4;
+            pet.walk();
+
+            expect(pet.fitness).toEqual(8);
+        });
+        it("increases fitness to a maximum value of 10", () => {
+            pet.fitness = 8;
+            pet.walk();
+            expect(pet.fitness).toEqual(10);
+        });
     });
 });
