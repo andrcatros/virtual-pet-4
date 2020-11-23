@@ -17,14 +17,18 @@ describe("constructor", () => {
         it("returns an object", () => {
             expect(new Pet("Fido")).toBeInstanceOf(Object);
         });
-
         it("has an initial age of 0", () => {
             expect(pet.age).toEqual(config.age);
         });
-        
         it("returns name of pet", () => {
             expect(pet.name).toBe(config.name);
         });
+        it("is alive", () => {
+            pet.hunger = 5
+            pet.fitness = 3
+            pet.age = 2
+            expect(pet.isAlive).toBe(true);
+        })
     });
 
     describe("growUp", () => {
