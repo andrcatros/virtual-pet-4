@@ -23,11 +23,17 @@ Pet.prototype = {
     this.age += 1;
     this.hunger += 5;
     this.fitness -= 3;
+    if (!this.isAlive) {
+        throw new Error("Your pet is no longer alive :(");
+    }
     if (this.fitness < MIN_FITNESS) {
         this.fitness = MIN_FITNESS;
         }
     },
     walk: function () {
+        if (!this.isAlive) {
+            throw new Error("Your pet is no longer alive :(");
+        }
         if((this.fitness + 4) <= MAX_FITNESS ) {
             this.fitness += 4;
         } else {
@@ -35,6 +41,9 @@ Pet.prototype = {
         }
     },
     feed: function () {
+        if (!this.isAlive) {
+            throw new Error("Your pet is no longer alive :(");
+        } 
         if((this.hunger - 3) >= MIN_HUNGER ) {
             this.hunger -= 3;
         } else {
@@ -42,6 +51,9 @@ Pet.prototype = {
         }
     },
     checkUp: function () {
+        if (!this.isAlive) {
+            throw new Error("Your pet is no longer alive :(");
+        } 
         if(((this.fitness <=3) && (this.hunger >= 5))) {
             return neglectedString;
         } else if(this.hunger >= 5) {

@@ -62,10 +62,10 @@ describe("constructor", () => {
 
     describe("feed", () => {
         it("decreases hunger by 3", () => {
-            pet.hunger = 15;
+            pet.hunger = 9;
             pet.feed();
 
-            expect(pet.hunger).toEqual(12);
+            expect(pet.hunger).toEqual(6);
         });
         it("decreases hunger to a minimum value of 0", () => {
             pet.hunger = 1;
@@ -73,6 +73,11 @@ describe("constructor", () => {
 
             expect(pet.hunger).toEqual(0);
         })
+        it("throws an error if the pet is not alive", () => {
+            pet.age = 30;
+
+            expect(() => pet.feed()).toThrow("Your pet is no longer alive :(");
+        });
     });
 
     describe("checkUp", () => {
@@ -82,13 +87,13 @@ describe("constructor", () => {
             expect(pet.checkUp()).toBe("I need a walk");
         })
         it("if hunger is above 5, return i am hungry", () => {
-            pet.hunger = 10;
+            pet.hunger = 6;
 
             expect(pet.checkUp()).toBe("I am hungry");
         })
         it("if pet is hungry and unfit, return i am hungry and need a walk", () => {
             pet.fitness = 2;
-            pet.hunger = 10;
+            pet.hunger = 9;
 
             expect(pet.checkUp()).toBe("I am hungry AND I need a walk");
         })
