@@ -7,11 +7,12 @@ const unfitString = "I need a walk";
 const neglectedString = "I am hungry AND I need a walk";
 const happyString = "I feel great!";
 
-function Pet(config) {
-    this.name = config.name;
+function Pet(name) {
+    this.name = name;
     this.age = MIN_AGE;
     this.hunger = MIN_HUNGER;
     this.fitness = MAX_FITNESS;
+    this.children = [];
 }
 
 Pet.prototype = {
@@ -63,6 +64,12 @@ Pet.prototype = {
         } else {
             return happyString;
         }
+    },
+    haveBaby: function (name){
+        if (!this.isAlive) {
+            throw new Error("Your pet is no longer alive :(");
+        }
+        this.children.push(new Pet(name))
     },
 }
 

@@ -2,15 +2,8 @@ const Pet = require("../src/pet");
 
 describe("constructor", () => {
     let pet;
-    let config;
     beforeEach(() => {
-        config = {
-            name: "Fido",
-            age: 0,
-            hunger: 0,
-            fitness: 10,
-        };
-        pet = new Pet(config);
+        pet = new Pet("Fido");
     });
 
     describe("constructor function", () => {
@@ -18,10 +11,10 @@ describe("constructor", () => {
             expect(new Pet("Fido")).toBeInstanceOf(Object);
         });
         it("has an initial age of 0", () => {
-            expect(pet.age).toEqual(config.age);
+            expect(pet.age).toEqual(0);
         });
         it("returns name of pet", () => {
-            expect(pet.name).toBe(config.name);
+            expect(pet.name).toBe("Fido");
         });
         it("is alive", () => {
             pet.hunger = 5
@@ -102,6 +95,13 @@ describe("constructor", () => {
             pet.hunger = 3;
 
             expect(pet.checkUp()).toBe("I feel great!");
-        })
-    })
+        });
+    });
+
+    describe("chave baby", () => {
+        it("has a baby called Spike", () => {
+            pet.haveBaby("Spike");
+            expect(pet.children[0]).toHaveProperty("name", "Spike");
+        });
+    });
 });
